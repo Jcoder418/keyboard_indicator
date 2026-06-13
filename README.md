@@ -115,4 +115,4 @@ COLOR_BG    = (22,  22,  26)   # Fond de l'icône
 
 ---
 
-*Testé sur Windows 11 — ASUS VivoBook 15 / 17*
+*Testé sur Windows 11*
