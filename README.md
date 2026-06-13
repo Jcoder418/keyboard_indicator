@@ -1,118 +1,122 @@
-# 🟢 KeyIndicator — Voyants clavier dans la barre des tâches Windows 11
-
-Petit utilitaire pour votre **ASUS VivoBook** (ou tout PC sans voyants LED physiques).  
-Affiche **3 points colorés** dans la barre des tâches qui reflètent l'état de :
-
-| Point | Touche          | Vert = ON | Gris = OFF | Jaune = clignotement |
-|-------|-----------------|-----------|------------|----------------------|
-| 🟢    | Verr. Num (Num Lock)  | ● | ○ | ✦ |
-| 🟢    | Verr. Maj (Caps Lock) | ● | ○ | ✦ |
-| 🟢    | Défilement (Scroll Lock) | ● | ○ | ✦ |
-
+# 🟢 KeyIndicator — Keyboard Indicator Lights in the Windows 11 Taskbar
+ 
+A small utility for your **ASUS VivoBook** (or any PC without physical LED indicators).  
+Displays **3 colored dots** in the taskbar reflecting the state of:
+ 
+| Dot | Key | Green = ON | Gray = OFF | Yellow = blinking |
+|-----|-----|------------|------------|-------------------|
+| 🟢 | Num Lock | ● | ○ | ✦ |
+| 🟢 | Caps Lock | ● | ○ | ✦ |
+| 🟢 | Scroll Lock | ● | ○ | ✦ |
+ 
 ---
-
-## 📁 Structure du projet
-
+ 
+## 📁 Project Structure
+ 
 ```
 keyboard_indicator/
 │
-├── main.py                 ← Application principale (tray icon + surveillance)
-├── generate_icon.py        ← Génère assets/icon.ico (à lancer 1 fois)
-├── install_autostart.py    ← Ajoute/retire du démarrage Windows
-├── build.bat               ← Compile en .exe autonome (PyInstaller)
-├── requirements.txt        ← Dépendances Python
+├── main.py                 ← Main application (tray icon + monitoring)
+├── generate_icon.py        ← Generates assets/icon.ico (run once)
+├── install_autostart.py    ← Adds/removes from Windows startup
+├── build.bat               ← Compiles into a standalone .exe (PyInstaller)
+├── requirements.txt        ← Python dependencies
 │
 └── assets/
-    └── icon.ico            ← Icône générée automatiquement
+    └── icon.ico            ← Auto-generated icon
 ```
-
+ 
 ---
-
-## 🚀 Installation rapide
-
-### 1 — Prérequis
+ 
+## 🚀 Quick Installation
+ 
+### 1 — Prerequisites
+ 
 - Windows 10 / 11
-- Python 3.10 ou supérieur → https://python.org/downloads
-- Cocher **"Add Python to PATH"** lors de l'installation
-
-### 2 — Installer les dépendances
+- Python 3.10 or higher → https://python.org/downloads
+- Check **"Add Python to PATH"** during installation
+### 2 — Install dependencies
+ 
 ```bat
 pip install -r requirements.txt
 ```
-
-### 3 — Générer l'icône
+ 
+### 3 — Generate the icon
+ 
 ```bat
 python generate_icon.py
 ```
-
-### 4 — Lancer directement (sans compiler)
+ 
+### 4 — Run directly (without compiling)
+ 
 ```bat
 pythonw main.py
 ```
-> `pythonw` évite d'afficher une fenêtre console noire.
-
+ 
+> `pythonw` avoids showing a black console window.
+ 
 ---
-
-## 🔨 Compiler en .exe autonome
-
+ 
+## 🔨 Compile to a Standalone .exe
+ 
 ```bat
 build.bat
 ```
-Le fichier `dist\KeyIndicator.exe` est créé.  
-Double-clic → l'icône apparaît dans la barre des tâches.
-
+ 
+The file `dist\KeyIndicator.exe` is created.  
+Double-click → the icon appears in the taskbar.
+ 
 ---
-
-## 🔁 Démarrage automatique avec Windows
-
+ 
+## 🔁 Auto-start with Windows
+ 
 ```bat
-REM Activer le démarrage auto
+REM Enable auto-start
 python install_autostart.py
-
-REM Désactiver
+ 
+REM Disable
 python install_autostart.py --remove
 ```
-
+ 
 ---
-
-## 🎨 Légende des couleurs
-
-| Couleur  | Signification                        |
-|----------|--------------------------------------|
-| 🟢 Vert  | Touche **active** (LED serait allumée) |
-| ⚫ Gris  | Touche **inactive**                  |
-| 🟡 Jaune | Touche en **clignotement** rapide    |
-
+ 
+## 🎨 Color Legend
+ 
+| Color | Meaning |
+|-------|---------|
+| 🟢 Green | Key **active** (LED would be on) |
+| ⚫ Gray | Key **inactive** |
+| 🟡 Yellow | Key **rapidly blinking** |
+ 
 ---
-
-## 🖱️ Menu contextuel (clic droit sur l'icône)
-
-- Affiche l'état actuel des 3 touches
-- Bouton **Quitter** pour fermer l'application
-
+ 
+## 🖱️ Context Menu (right-click on the icon)
+ 
+- Shows the current state of all 3 keys
+- **Quit** button to close the application
 ---
-
-## ⚙️ Personnalisation
-
-Modifiez les couleurs dans `main.py` :
-
+ 
+## ⚙️ Customization
+ 
+Edit the colors in `main.py`:
+ 
 ```python
-COLOR_ON    = (80, 220, 120)   # Vert  → touche active
-COLOR_OFF   = (55,  55,  60)   # Gris  → touche inactive  
-COLOR_BLINK = (255, 200,  40)  # Jaune → clignotement
-COLOR_BG    = (22,  22,  26)   # Fond de l'icône
+COLOR_ON    = (80, 220, 120)   # Green  → active key
+COLOR_OFF   = (55,  55,  60)   # Gray   → inactive key
+COLOR_BLINK = (255, 200,  40)  # Yellow → blinking
+COLOR_BG    = (22,  22,  26)   # Icon background
 ```
-
+ 
 ---
-
-## 📦 Dépendances
-
-| Paquet     | Rôle                                      |
-|------------|-------------------------------------------|
-| `pystray`  | Icône dans la barre des tâches système    |
-| `Pillow`   | Dessin des points colorés (icône dynamique)|
-| `pywin32`  | Lecture de l'état des touches Windows     |
-
+ 
+## 📦 Dependencies
+ 
+| Package | Role |
+|---------|------|
+| `pystray` | System tray icon |
+| `Pillow` | Drawing colored dots (dynamic icon) |
+| `pywin32` | Reading Windows key states |
+ 
 ---
-
-*Testé sur Windows 11*
+ 
+*Tested on Windows 11*
