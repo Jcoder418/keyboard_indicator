@@ -1,6 +1,6 @@
 # 🟢 KeyIndicator — Keyboard Indicator Lights in the Windows 11 Taskbar
  
-A small utility for your **ASUS VivoBook** (or any PC without physical LED indicators).  
+A small utility for your **PC** (or any PC without physical LED indicators).  
 Displays **3 colored dots** in the taskbar reflecting the state of:
  
 | Dot | Key | Green = ON | Gray = OFF | Yellow = blinking |
