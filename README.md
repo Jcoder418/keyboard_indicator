@@ -119,4 +119,4 @@ COLOR_BG    = (22,  22,  26)   # Icon background
  
 ---
  
-*Tested on Windows 11*
+*Tested on Windows 11*..
